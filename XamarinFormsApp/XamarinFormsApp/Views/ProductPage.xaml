@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinFormsApp.Views.ProductPage"
+             Title="Productos">
+    <ContentPage.Content>
+        <CollectionView ItemsSource="{Binding Products}" ItemsLayout="VerticalGrid, 3">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Padding="10" Margin="5" BackgroundColor="White" CornerRadius="10">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="100"/>
+                                <!-- Altura para la imagen -->
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <!-- Muestra la imagen del producto -->
+                            <Image Source="{Binding Thumbnail}" Aspect="AspectFill">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnImageTapped" />
+                                </Image.GestureRecognizers>
+                            </Image>
+
+                            <!-- Detalles del producto -->
+                            <StackLayout Grid.Row="1" Padding="5">
+                                <Label Text="{Binding Name}" 
+                                       FontAttributes="Bold" 
+                                       FontSize="Medium" 
+                                       TextColor="Black"/>
+                                <Label Text="{Binding Description}" 
+                                       FontSize="Small" 
+                                       TextColor="Black"/>
+                                <Label Text="{Binding Price, StringFormat='Precio: {0:C}'}" 
+                                       FontSize="Small" 
+                                       TextColor="Black"/>
+                                <Label Text="{Binding Brand}" 
+                                       FontSize="Small" 
+                                       TextColor="Black"/>
+                            </StackLayout>
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </ContentPage.Content>
+</ContentPage>
